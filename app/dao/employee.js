@@ -37,16 +37,28 @@ class EmployeeDao {
     });
     if (employee) {
       throw new Forbidden({
-        msg: '法人单位已存在'
+        msg: '员工信息已存在'
       });
     }
+    // employee_id: this.employee_id,
+    // employee_name: this.employee_name,
+    // entity_name: this.entity_name,
+    // employee_position: this.employee_position,
+    // gender: this.gender,
+    // age: this.age,
+    // employment_status: this.employment_status,
+    // attendance_status: this.attendance_status,
+    // education_status: this.education_status
     const bk = new Employee();
-    bk.entity_code = v.get('body.entity_code');
+    bk.employee_id = v.get('body.employee_id');
+    bk.employee_name = v.get('body.employee_name');
     bk.entity_name = v.get('body.entity_name');
-    bk.entity_abbr = v.get('body.entity_abbr');
-    bk.forgz = v.get('body.forgz');
-    bk.entity_level = v.get('body.entity_level');
-    bk.attach_to = v.get('body.attach_to');
+    bk.employee_position = v.get('body.employee_position');
+    bk.gender = v.get('body.gender');
+    bk.age = v.get('body.age');
+    bk.employment_status = v.get('body.employment_status');
+    bk.attendance_status = v.get('body.attendance_status');
+    bk.education_status = v.get('body.education_status');
     bk.save();
   }
 
@@ -54,16 +66,19 @@ class EmployeeDao {
     const employee = await Employee.findByPk(id);
     if (!employee) {
       throw new NotFound({
-        msg: '没有找到相关法人单位'
+        msg: '没有找到相关员工信息'
       });
     }
 
-    employee.entity_code = v.get('body.entity_code');
+    employee.employee_id = v.get('body.employee_id');
+    employee.employee_name = v.get('body.employee_name');
     employee.entity_name = v.get('body.entity_name');
-    employee.entity_abbr = v.get('body.entity_abbr');
-    employee.forgz = v.get('body.forgz');
-    employee.entity_level = v.get('body.entity_level');
-    employee.attach_to = v.get('body.attach_to');
+    employee.employee_position = v.get('body.employee_position');
+    employee.gender = v.get('body.gender');
+    employee.age = v.get('body.age');
+    employee.employment_status = v.get('body.employment_status');
+    employee.attendance_status = v.get('body.attendance_status');
+    employee.education_status = v.get('body.education_status');
 
     employee.save();
   }
@@ -76,7 +91,7 @@ class EmployeeDao {
     });
     if (!employee) {
       throw new NotFound({
-        msg: '没有找到相关法人单位'
+        msg: '没有找到相关员工信息'
       });
     }
     employee.destroy();
