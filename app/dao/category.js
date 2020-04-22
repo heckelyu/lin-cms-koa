@@ -15,7 +15,7 @@ class CategoryDao {
   async getCategoryByKeyword (q) {
     const category = await Category.findOne({
       where: {
-        entity_code: {
+        name: {
           [Sequelize.Op.like]: `%${q}%`
         }
       }

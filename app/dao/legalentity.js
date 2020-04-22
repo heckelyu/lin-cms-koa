@@ -15,7 +15,7 @@ class LegalentityDao {
   async getLegalentityByKeyword (q) {
     const legalentity = await Legalentity.findOne({
       where: {
-        entity_code: {
+        entity_name: {
           [Sequelize.Op.like]: `%${q}%`
         }
       }

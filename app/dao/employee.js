@@ -15,7 +15,7 @@ class EmployeeDao {
   async getEmployeeByKeyword (q) {
     const employee = await Employee.findOne({
       where: {
-        entity_code: {
+        employee_name: {
           [Sequelize.Op.like]: `%${q}%`
         }
       }
@@ -31,7 +31,6 @@ class EmployeeDao {
   async createEmployee (v) {
     const employee = await Employee.findOne({
       where: {
-        employee_name: v.get('body.employee_name'),
         employee_id: v.get('body.employee_id')
       }
     });
