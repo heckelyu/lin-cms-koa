@@ -12,7 +12,7 @@ class Legalentity extends Model {
       entity_abbr: this.entity_abbr,
       forgz: this.forgz,
       entity_level: this.entity_level,
-      attach_to: this.attach_to,
+      attach_to: this.attach_to
     };
     return origin;
   }
