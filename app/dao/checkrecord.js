@@ -31,21 +31,22 @@ class CheckrecordDao {
   async createCheckrecord (v) {
     const checkrecord = await Checkrecord.findOne({
       where: {
-        entity_code: v.get('body.entity_code')
+        asset_code: v.get('body.asset_code')   //这里的逻辑有问题，晚点改
       }
     });
     if (checkrecord) {
       throw new Forbidden({
-        msg: '法人单位已存在'
+        msg: '盘点记录已存在'
       });
     }
     const bk = new Checkrecord();
-    bk.entity_code = v.get('body.entity_code');
+    bk.asset_code = v.get('body.asset_code');
     bk.entity_name = v.get('body.entity_name');
-    bk.entity_abbr = v.get('body.entity_abbr');
-    bk.forgz = v.get('body.forgz');
-    bk.entity_level = v.get('body.entity_level');
-    bk.attach_to = v.get('body.attach_to');
+    bk.asset_status = v.get('body.asset_status');
+    bk.check_note = v.get('body.check_note');
+    bk.check_image_id = v.get('body.check_image_id');
+    bk.check_date = v.get('body.check_date');
+    bk.check_user_id = v.get('body.check_user_id');
     bk.save();
   }
 
@@ -53,16 +54,17 @@ class CheckrecordDao {
     const checkrecord = await Checkrecord.findByPk(id);
     if (!checkrecord) {
       throw new NotFound({
-        msg: '没有找到相关法人单位'
+        msg: '没有找到相关盘点记录'
       });
     }
 
-    checkrecord.entity_code = v.get('body.entity_code');
+    checkrecord.asset_code = v.get('body.asset_code');
     checkrecord.entity_name = v.get('body.entity_name');
-    checkrecord.entity_abbr = v.get('body.entity_abbr');
-    checkrecord.forgz = v.get('body.forgz');
-    checkrecord.entity_level = v.get('body.entity_level');
-    checkrecord.attach_to = v.get('body.attach_to');
+    checkrecord.asset_status = v.get('body.asset_status');
+    checkrecord.check_note = v.get('body.check_note');
+    checkrecord.check_image_id = v.get('body.check_image_id');
+    checkrecord.check_date = v.get('body.check_date');
+    checkrecord.check_user_id = v.get('body.check_user_id');
 
     checkrecord.save();
   }
@@ -75,7 +77,7 @@ class CheckrecordDao {
     });
     if (!checkrecord) {
       throw new NotFound({
-        msg: '没有找到相关法人单位'
+        msg: '没有找到相关盘点记录'
       });
     }
     checkrecord.destroy();

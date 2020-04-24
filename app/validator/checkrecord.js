@@ -10,8 +10,8 @@ class CheckrecordSearchValidator extends LinValidator {
 class CreateOrUpdateCheckrecordValidator extends LinValidator {
   constructor () {
     super();
-    this.entity_code = new Rule('isNotEmpty', '必须传入法人单位代码');
-    this.entity_name = new Rule('isNotEmpty', '必须传入法人单位名称');
+    this.asset_code = new Rule('isNotEmpty', '必须传入资产编码');
+    this.entity_name = new Rule('isNotEmpty', '必须传入产权单位名称');
   }
 }
 

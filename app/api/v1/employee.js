@@ -34,7 +34,7 @@ employeeApi.get('/', async ctx => {
   const employees = await employeeDto.getEmployees();
   // if (!employees || employees.length < 1) {
   //   throw new NotFound({
-  //     msg: '没有找到相关法人单位'
+  //     msg: '没有找到'
   //   });
   // }
   ctx.json(employees);

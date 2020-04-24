@@ -24,7 +24,7 @@ assetbasicApi.get('/:id', async ctx => {
   const assetbasic = await assetbasicDto.getAssetbasic(id);
   if (!assetbasic) {
     throw new NotFound({
-      msg: '没有找到相关法人单位'
+      msg: '没有找到相关资产条目'
     });
   }
   ctx.json(assetbasic);
@@ -34,7 +34,7 @@ assetbasicApi.get('/', async ctx => {
   const assetbasics = await assetbasicDto.getAssetbasics();
   // if (!assetbasics || assetbasics.length < 1) {
   //   throw new NotFound({
-  //     msg: '没有找到相关法人单位'
+  //     msg: '没有找到相关资产条目'
   //   });
   // }
   ctx.json(assetbasics);

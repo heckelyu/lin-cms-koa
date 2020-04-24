@@ -29,7 +29,8 @@ Checkrecord.init(
     },
     asset_id: {
       type: Sequelize.INTEGER,
-      allowNull: false
+      allowNull: true,
+      defaultValue: 1
     },
     asset_code: {
       type: Sequelize.STRING(64),
@@ -37,7 +38,7 @@ Checkrecord.init(
     },
     entity_name: {
       type: Sequelize.STRING(64),
-      allowNull: true
+      allowNull: false
     },
     asset_status: {
       type: Sequelize.TINYINT,

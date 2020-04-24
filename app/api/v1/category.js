@@ -24,7 +24,7 @@ categoryApi.get('/:id', async ctx => {
   const category = await categoryDto.getCategory(id);
   if (!category) {
     throw new NotFound({
-      msg: '没有找到相关法人单位'
+      msg: '没有找到相关资产类别'
     });
   }
   ctx.json(category);
@@ -34,7 +34,7 @@ categoryApi.get('/', async ctx => {
   const categorys = await categoryDto.getCategorys();
   // if (!categorys || categorys.length < 1) {
   //   throw new NotFound({
-  //     msg: '没有找到相关法人单位'
+  //     msg: '没有找到相关资产类别'
   //   });
   // }
   ctx.json(categorys);
@@ -53,7 +53,7 @@ categoryApi.post('/', async ctx => {
   const v = await new CreateOrUpdateCategoryValidator().validate(ctx);
   await categoryDto.createCategory(v);
   ctx.success({
-    msg: '新建法人单位成功',
+    msg: '新建资产类别成功',
     errorCode: 10
   });
 });
@@ -63,7 +63,7 @@ categoryApi.put('/:id', async ctx => {
   const id = getSafeParamId(ctx);
   await categoryDto.updateCategory(v, id);
   ctx.success({
-    msg: '更新法人单位成功',
+    msg: '更新资产类别成功',
     errorCode: 11
   });
 });
@@ -72,8 +72,8 @@ categoryApi.linDelete(
   'deleteCategory',
   '/:id',
   {
-    permission: '删除法人单位',
-    module: '法人单位',
+    permission: '删除资产类别',
+    module: '资产类别',
     mount: true
   },
   groupRequired,
@@ -82,7 +82,7 @@ categoryApi.linDelete(
     const id = v.get('path.id');
     await categoryDto.deleteCategory(id);
     ctx.success({
-      msg: '删除法人单位成功',
+      msg: '删除资产类别成功',
       errorCode: 12
     });
   }

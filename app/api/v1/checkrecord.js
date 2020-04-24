@@ -24,7 +24,7 @@ checkrecordApi.get('/:id', async ctx => {
   const checkrecord = await checkrecordDto.getCheckrecord(id);
   if (!checkrecord) {
     throw new NotFound({
-      msg: '没有找到相关法人单位'
+      msg: '没有找到相关盘点记录'
     });
   }
   ctx.json(checkrecord);
@@ -34,7 +34,7 @@ checkrecordApi.get('/', async ctx => {
   const checkrecords = await checkrecordDto.getCheckrecords();
   // if (!checkrecords || checkrecords.length < 1) {
   //   throw new NotFound({
-  //     msg: '没有找到相关法人单位'
+  //     msg: '没有找到相关盘点记录'
   //   });
   // }
   ctx.json(checkrecords);
@@ -53,7 +53,7 @@ checkrecordApi.post('/', async ctx => {
   const v = await new CreateOrUpdateCheckrecordValidator().validate(ctx);
   await checkrecordDto.createCheckrecord(v);
   ctx.success({
-    msg: '新建法人单位成功',
+    msg: '新建盘点记录成功',
     errorCode: 10
   });
 });
@@ -63,7 +63,7 @@ checkrecordApi.put('/:id', async ctx => {
   const id = getSafeParamId(ctx);
   await checkrecordDto.updateCheckrecord(v, id);
   ctx.success({
-    msg: '更新法人单位成功',
+    msg: '更新盘点记录成功',
     errorCode: 11
   });
 });
@@ -72,8 +72,8 @@ checkrecordApi.linDelete(
   'deleteCheckrecord',
   '/:id',
   {
-    permission: '删除法人单位',
-    module: '法人单位',
+    permission: '删除盘点记录',
+    module: '盘点记录',
     mount: true
   },
   groupRequired,
@@ -82,7 +82,7 @@ checkrecordApi.linDelete(
     const id = v.get('path.id');
     await checkrecordDto.deleteCheckrecord(id);
     ctx.success({
-      msg: '删除法人单位成功',
+      msg: '删除盘点记录成功',
       errorCode: 12
     });
   }
