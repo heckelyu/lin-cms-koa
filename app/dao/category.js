@@ -15,11 +15,21 @@ class CategoryDao {
   async getCategoryByKeyword (q) {
     const category = await Category.findOne({
       where: {
-        name: {
+        sub_name: {
           [Sequelize.Op.like]: `%${q}%`
         }
       }
     });
+    return category;
+  }
+
+  async getCategoryByType (qType) {
+    const category = await Category.findAll({
+      where: {
+        category_type: qType
+      }
+    });
+    console.log(category);
     return category;
   }
 

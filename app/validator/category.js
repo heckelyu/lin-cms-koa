@@ -7,6 +7,13 @@ class CategorySearchValidator extends LinValidator {
   }
 }
 
+class CategoryTypeValidator extends LinValidator {
+  constructor () {
+    super();
+    this.qtype = new Rule('isNotEmpty', '必须传入类型编码');
+  }
+}
+
 class CreateOrUpdateCategoryValidator extends LinValidator {
   constructor () {
     super();
@@ -17,4 +24,4 @@ class CreateOrUpdateCategoryValidator extends LinValidator {
   }
 }
 
-export { CreateOrUpdateCategoryValidator, CategorySearchValidator };
+export { CreateOrUpdateCategoryValidator, CategoryTypeValidator, CategorySearchValidator };

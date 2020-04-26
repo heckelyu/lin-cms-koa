@@ -2,6 +2,7 @@ import { LinRouter, NotFound, disableLoading } from 'lin-mizar';
 import { groupRequired } from '../../middleware/jwt';
 import {
   CategorySearchValidator,
+  CategoryTypeValidator,
   CreateOrUpdateCategoryValidator
 } from '../../validator/category';
 import { PositiveIdValidator } from '../../validator/common';
@@ -37,6 +38,18 @@ categoryApi.get('/', async ctx => {
   //     msg: '没有找到相关资产类别'
   //   });
   // }
+  ctx.json(categorys);
+});
+
+categoryApi.get('/type/:qtype', async ctx => {
+  const v = await new CategoryTypeValidator().validate(ctx);
+  const qType = v.get('path.qtype');
+  const categorys = await categoryDto.getCategoryByType(qType);
+  if (!categorys) {
+    throw new NotFound({
+      msg: '没有找到相关资产类别'
+    });
+  }
   ctx.json(categorys);
 });
 
