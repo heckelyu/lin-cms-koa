@@ -10,8 +10,10 @@ class CategorySearchValidator extends LinValidator {
 class CreateOrUpdateCategoryValidator extends LinValidator {
   constructor () {
     super();
-    this.code = new Rule('isNotEmpty', '必须传入实物类别代码');
-    this.name = new Rule('isNotEmpty', '必须传入实物类别名称');
+    this.category_type = new Rule('isNotEmpty', '必须传入分类类型编码');
+    this.category_name = new Rule('isNotEmpty', '必须传入分类类型名称');
+    this.sub_code = new Rule('isNotEmpty', '必须传入类别代码');
+    this.sub_name = new Rule('isNotEmpty', '必须传入类别名称');
   }
 }
 

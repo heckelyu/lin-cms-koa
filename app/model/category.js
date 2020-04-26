@@ -7,11 +7,13 @@ class Category extends Model {
   toJSON () {
     const origin = {
       id: this.id,
-      code: this.code,
-      name: this.name,
-      value: this.value,
-      flag: this.flag,
-      note: this.note
+      category_type: this.category_type,
+      category_name: this.category_name,
+      sub_code: this.sub_code,
+      sub_name: this.sub_name,
+      sub_value: this.sub_value,
+      sub_flag: this.sub_flag,
+      sub_note: this.sub_note
     };
     return origin;
   }
@@ -24,23 +26,31 @@ Category.init(
       primaryKey: true,
       autoIncrement: true
     },
-    code: {
+    category_type: {
+      type: Sequelize.STRING(16),
+      allowNull: false
+    },
+    category_name: {
+      type: Sequelize.STRING(32),
+      allowNull: false
+    },
+    sub_code: {
       type: Sequelize.STRING(8),
       allowNull: false
     },
-    name: {
-      type: Sequelize.STRING(255),
+    sub_name: {
+      type: Sequelize.STRING(128),
       allowNull: false
     },
-    value: {
+    sub_value: {
       type: Sequelize.STRING(32),
       allowNull: true
     },
-    flag: {
+    sub_flag: {
       type: Sequelize.TINYINT,
       allowNull: true
     },
-    note: {
+    sub_note: {
       type: Sequelize.STRING(255),
       allowNull: true
     }

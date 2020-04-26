@@ -31,20 +31,24 @@ class CategoryDao {
   async createCategory (v) {
     const category = await Category.findOne({
       where: {
-        code: v.get('body.code')
+        category_type: v.get('body.category_type'),
+        sub_code: v.get('body.sub_code')
       }
     });
     if (category) {
       throw new Forbidden({
-        msg: '实物类别已存在'
+        msg: '类别已存在'
       });
     }
     const bk = new Category();
-    bk.code = v.get('body.code');
-    bk.name = v.get('body.name');
-    bk.value = v.get('body.value');
-    bk.flag = v.get('body.flag');
-    bk.note = v.get('body.note');
+    bk.category_type = v.get('body.category_type');
+    bk.category_name = v.get('body.category_name');
+    bk.sub_code = v.get('body.sub_code');
+    bk.sub_name = v.get('body.sub_name');
+    bk.sub_value = v.get('body.sub_value');
+    bk.sub_flag = v.get('body.sub_flag');
+    bk.sub_note = v.get('body.sub_note');
+
     bk.save();
   }
 
@@ -56,11 +60,13 @@ class CategoryDao {
       });
     }
 
-    category.code = v.get('body.code');
-    category.name = v.get('body.name');
-    category.value = v.get('body.value');
-    category.flag = v.get('body.flag');
-    category.note = v.get('body.note');
+    category.category_type = v.get('body.category_type');
+    category.category_name = v.get('body.category_name');
+    category.sub_code = v.get('body.sub_code');
+    category.sub_name = v.get('body.sub_name');
+    category.sub_value = v.get('body.sub_value');
+    category.sub_flag = v.get('body.sub_flag');
+    category.sub_note = v.get('body.sub_note');
 
     category.save();
   }
@@ -73,7 +79,7 @@ class CategoryDao {
     });
     if (!category) {
       throw new NotFound({
-        msg: '没有找到相关实物类别'
+        msg: '没有找到相关类别'
       });
     }
     category.destroy();
