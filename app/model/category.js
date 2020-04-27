@@ -35,7 +35,7 @@ Category.init(
       allowNull: false
     },
     sub_code: {
-      type: Sequelize.STRING(8),
+      type: Sequelize.STRING(16),
       allowNull: false
     },
     sub_name: {
