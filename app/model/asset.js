@@ -25,7 +25,20 @@ class Asset extends Model {
       asset_owner_dept: this.asset_owner_dept,
       asset_location: this.asset_location,
       asset_note: this.asset_note,
-      asset_image_id: this.asset_image_id
+      asset_image_id: this.asset_image_id,
+      asset_proofs_code: this.asset_proofs_code,
+      asset_original_value: this.asset_original_value,
+      asset_net_value: this.asset_net_value,
+      asset_depreciation_this_year: this.asset_depreciation_this_year,
+      asset_depreciation_this_month: this.asset_depreciation_this_month,
+      asset_residual_value: this.asset_residual_value,
+      asset_account_entry_date: this.asset_account_entry_date,
+      asset_depreciation_years: this.asset_depreciation_years,
+      asset_depreciated_months: this.asset_depreciated_months,
+      asset_write_off_status: this.asset_write_off_status,
+      asset_write_off_reason: this.asset_write_off_reason,
+      asset_write_off_note: this.asset_write_off_note,
+      asset_is_subitem: this.asset_is_subitem
     };
     return origin;
   }
@@ -120,11 +133,63 @@ Asset.init(
       type: Sequelize.INTEGER,
       allowNull: true,
       defaultValue: '1'
+    },
+    asset_proofs_code: {
+      type: Sequelize.STRING(64),
+      allowNull: true
+    },
+    asset_original_value: {
+      type: Sequelize.DECIMAL(18, 2),
+      allowNull: true
+    },
+    asset_net_value: {
+      type: Sequelize.DECIMAL(18, 2),
+      allowNull: true
+    },
+    asset_depreciation_this_year: {
+      type: Sequelize.DECIMAL(18, 2),
+      allowNull: true
+    },
+    asset_depreciation_this_month: {
+      type: Sequelize.DECIMAL(18, 2),
+      allowNull: true
+    },
+    asset_residual_value: {
+      type: Sequelize.DECIMAL(18, 2),
+      allowNull: true
+    },
+    asset_account_entry_date: {
+      type: Sequelize.DATE,
+      allowNull: true
+    },
+    asset_depreciation_years: {
+      type: Sequelize.TINYINT,
+      allowNull: true
+    },
+    asset_depreciated_months: {
+      type: Sequelize.SMALLINT,
+      allowNull: true
+    },
+    asset_write_off_status: {
+      type: Sequelize.STRING(8),
+      allowNull: true
+    },
+    asset_write_off_reason: {
+      type: Sequelize.STRING(255),
+      allowNull: true
+    },
+    asset_write_off_note: {
+      type: Sequelize.STRING(512),
+      allowNull: true
+    },
+    asset_is_subitem: {
+      type: Sequelize.TINYINT,
+      allowNull: true
     }
   },
   merge(
     {
-      tableName: 'asset_basic',
+      tableName: 'asset',
       modelName: 'asset',
       sequelize
     },
